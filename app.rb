@@ -3,7 +3,9 @@ Bundler.require
 require 'sinatra/reloader' if development?
 require './models/count.rb'
 
-domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info","app.gotoour.site","app.go2link.xyz","app.move2.link"]
+domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info",
+    "app.gotoour.site","app.go2link.xyz","app.move2.link",
+    "app.2g0.online","app.skip2.xyz","app.skip2.cloud"]
 
 get '/' do
     @domains = domains
