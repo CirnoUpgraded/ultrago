@@ -31,7 +31,7 @@ get '/mrked' do
     pw = params[:pw]
     link = Link.find_by(text: arg,domain: domain)
     if( link != nil && link.password == pw)
-        "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain" + domain + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
+        "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain=" + domain + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
     end
 end
 
