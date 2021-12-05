@@ -13,7 +13,7 @@ end
 
 post '/mkr' do
     if(domains.include?(params[:selectdomain]))
-        Link.create(text: params[:arg],domain: params[:seelctdomain],password: params[:pw],target: params[:target])
+        @created = Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
         redirect "/mrked?domain=" + params[:selectdomain] + "&arg=" + params[:arg] + "&pw=" + params[:pw]
     end
     "Failed to create short url! <a href='/'>Home</a>"
@@ -21,7 +21,7 @@ end
 
 
 get '/mrked' do
-    domain = params[:selectdomain]
+    domain = params[:domain]
     arg = params[:arg]
     pw = params[:pw]
     link = Link.find_by(text: arg,domain: domain)
