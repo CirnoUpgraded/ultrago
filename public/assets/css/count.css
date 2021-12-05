@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    /* 全体の横幅 */
+    width: 100%;
+    /* 全体を中央寄せ */
+    margin: auto;
+    /* 全体の余白 */
+    padding: 10px;
+    
+    text-align: center;
+}
+
+/* 数字 */
+h1{
+    margin: auto;
+    
+    /* 文字の太さ */
+    font-weight: 100;
+    
+    /* 文字を中央寄せ */
+    text-align: center;
+    
+    /* 横幅 */
+    width: 235px;
+    
+    /* 縦幅 */
+    height: 75px;
+    line-height: 75px;
+    
+    /* 枠の太さ 線の種類 色 */
+    border: 1px solid #009688;
+    
+    /* 枠を丸くする */
+    border-radius: 50%;
+}
+
+input{
+    max-width: 100%;
+}

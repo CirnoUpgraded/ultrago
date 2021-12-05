@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>[ShortURL]</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/count.css">
+</head>
+<body>
+  <form action="/mkr " method="post">
+    <!--<label for="select-domain">-->
+    <h1>UltraGo_v2</h1>
+    <div>Let's make short url without any other service that be end.<br>
+    <input type="text" id="target" name="target" required
+       minlength="1" size="150"></input><br>
+      <select name="selectdomain" id="selectdomain">
+        <option value="">Click to select domain</option>
+        <% @domains.each do |domain| %>
+          <option value="<%= domain %>"><%= domain %></option>
+        <% end %>
+      </select>
+      <input type="text" id="arg" name="arg" required
+       minlength="1" maxlength="25" size="25"></input>
+       <input type="password" id="pw" name="pw" required
+       minlength="4" maxlength="20" size="25"></input>
+      <p>
+        <button type="submit"><big>Make it!</big></button>
+      </p>
+  </form>
+</body>
+</html>
