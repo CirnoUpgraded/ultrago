@@ -11,6 +11,7 @@
     <!--<label for="select-domain">-->
     <h1>UltraGo_v2</h1>
     <div>Let's make short url without any other service that be end.<br>
+    <div>Please input URL that you want to make it short!<br>
     <input type="text" id="target" name="target" required
        minlength="1" size="150"></input><br>
       <select name="selectdomain" id="selectdomain">
@@ -19,9 +20,9 @@
           <option value="<%= domain %>"><%= domain %></option>
         <% end %>
       </select>
-      <input type="text" id="arg" name="arg" required
+      <input type="text" id="arg" name="arg" placefolder="arg!"  rrequired
        minlength="1" maxlength="25" size="25"></input>
-       <input type="password" id="pw" name="pw" required
+       <input type="password" id="pw" name="pw" placefolder="password-for-delete!" required
        minlength="4" maxlength="20" size="25"></input>
       <p>
         <button type="submit"><big>Make it!</big></button>
