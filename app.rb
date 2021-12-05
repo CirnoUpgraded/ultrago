@@ -26,7 +26,7 @@ get '/mrked' do
     pw = params[:pw]
     link = Link.find_by(text: arg,domain: domain)
     if( link != nil && link.password == pw)
-        "Original: " + link.target + "<br>Short: http://app." + domain + "/" + arg
+        "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg
     end
 end
 
