@@ -7,6 +7,8 @@ domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info",
     "app.gotoour.site","app.go2link.xyz","app.move2.link",
     "app.2g0.online","app.skip2.xyz","app.skip2.cloud",
     "app.リンクタンシュク.jp","app.ultra-go.info","app.theultrago.xyz"]
+    
+bads = ["mkr","mrked","dlr","data"]
 
 get '/' do
     @domains = domains
@@ -15,7 +17,7 @@ end
 
 
 post '/mkr' do
-    if(domains.include?(params[:selectdomain]) and params[:arg].strip != "" and params[:target].strip != "" and params[:pw].strip != "" )
+    if(domains.include?(params[:selectdomain]) and params[:arg].strip != "" and params[:target].strip != "" and params[:pw].strip != "" and bads.include?(params[:arg].strip) )
         link = Link.find_by(text: params[:arg],domain: params[:selectdomain])
         if( link == nil )
             Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
@@ -48,6 +50,15 @@ get '/dlr' do
         link.destroy()
         "Deleted! <a href='/'>Home</a>"
     end
+end
+
+get '/data' do
+    a = ""
+    @domains.each do |domain|
+        perDomain = Link.where(domain: domain)
+        a = a + "<br>" + domain + " : " + perDomain.count
+    end
+    a
 end
 
 get '/:any' do
