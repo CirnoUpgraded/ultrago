@@ -56,6 +56,6 @@ get '/:any' do
     if( link != nil ) 
         redirect link.target
     else
-        redirect "/"
+        redirect "http://app.ultra-go.info/"
     end
 end
