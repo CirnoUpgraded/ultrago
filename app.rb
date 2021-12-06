@@ -54,9 +54,9 @@ end
 
 get '/data' do
     a = ""
-    @domains.each do |domain|
+    domains.each do |domain|
         perDomain = Link.where(domain: domain)
-        a = a + "<br>" + domain + " : " + perDomain.count
+        a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
     end
     a
 end
