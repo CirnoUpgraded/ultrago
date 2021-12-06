@@ -58,7 +58,7 @@ get '/data' do
         perDomain = Link.where(domain: domain)
         a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
     end
-    a
+    a + "<br><a href='http://app.ultra-go.info'>Home</a>"
 end
 
 get '/:any' do
