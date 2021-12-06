@@ -17,7 +17,7 @@ end
 
 
 post '/mkr' do
-    if(domains.include?(params[:selectdomain]) and params[:arg].strip != "" and params[:target].strip != "" and params[:pw].strip != "" and bads.include?(params[:arg].strip) )
+    if(domains.include?(params[:selectdomain]) and params[:arg].strip != "" and params[:target].strip != "" and params[:pw].strip != "" and !bads.include?(params[:arg].strip) )
         link = Link.find_by(text: params[:arg],domain: params[:selectdomain])
         if( link == nil )
             Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
