@@ -54,11 +54,14 @@ end
 
 get '/data' do
     a = ""
+    am = 0
     domains.each do |domain|
         perDomain = Link.where(domain: domain)
         a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
+        am = am + perDomain.count
     end
-    a + "<br><a href='http://app.ultra-go.info'>Home</a>"
+    am = Link.count - am
+    a + "<br>Deleted: " + am.to_s + "<br><a href='http://app.ultra-go.info'>Home</a>"
 end
 
 get '/:any' do
