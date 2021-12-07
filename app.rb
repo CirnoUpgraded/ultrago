@@ -47,7 +47,7 @@ get '/mrked' do
         if(domain.strip == "app.xn--pckax5a0p0a7dc.jp")
             domain = "app.リンクタンシュク.jp"
         end
-        "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain=" + domain + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
+        "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain=" + params[:domain] + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
     end
 end
 
