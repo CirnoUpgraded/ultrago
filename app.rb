@@ -20,7 +20,12 @@ post '/mkr' do
     if(domains.include?(params[:selectdomain]) and params[:arg].strip != "" and params[:target].strip != "" and params[:pw].strip != "" and !bads.include?(params[:arg].strip) )
         link = Link.find_by(text: params[:arg],domain: params[:selectdomain])
         if( link == nil )
-            Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
+            if(params[:selectdomain].strip == "app.リンクタンシュク.jp")
+                Link.create(text: params[:arg],domain: "app.リンクタンシュク.jp",password: params[:pw],target: params[:target])
+                redirect "/mrked?domain=JPDM&arg=" + params[:arg] + "&pw=" + params[:pw]
+            else
+                Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
+            end
             redirect "/mrked?domain=" + params[:selectdomain] + "&arg=" + params[:arg] + "&pw=" + params[:pw]
         else
             "Already Exited! <a href='/'>Home</a>"
@@ -34,6 +39,9 @@ get '/mrked' do
     domain = params[:domain]
     arg = params[:arg]
     pw = params[:pw]
+    if(domain.strip == "JPDM")
+        domain = "app.リンクタンシュク.jp"
+    end
     link = Link.find_by(text: arg,domain: domain)
     if( link != nil && link.password == pw)
         "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain=" + domain + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
