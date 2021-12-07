@@ -53,9 +53,6 @@ get '/dlr' do
     domain = params[:domain]
     arg = params[:arg]
     pw = params[:pw]
-    if(domain.strip == "app.xn--pckax5a0p0a7dc.jp")
-        domain = "jp.リンクタンシュク.jp"
-    end
     link = Link.find_by(text: arg,domain: domain,password: pw)
     if( link != nil )
         link.destroy()
