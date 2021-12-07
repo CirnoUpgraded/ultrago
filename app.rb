@@ -67,7 +67,7 @@ get '/data' do
     a = ""
     am = 0
     domains.each do |domain|
-        if(!domain.strip == "app.xn--pckax5a0p0a7dc.jp")
+        if(!(domain.strip == "app.xn--pckax5a0p0a7dc.jp"))
             if(domain.strip == "app.リンクタンシュク.jp")
                 domain = "app.xn--pckax5a0p0a7dc.jp"
             end
