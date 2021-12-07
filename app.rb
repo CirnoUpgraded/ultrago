@@ -21,8 +21,8 @@ post '/mkr' do
         link = Link.find_by(text: params[:arg],domain: params[:selectdomain])
         if( link == nil )
             if(params[:selectdomain].strip == "app.リンクタンシュク.jp")
-                Link.create(text: params[:arg],domain: "app.リンクタンシュク.jp",password: params[:pw],target: params[:target])
-                redirect "/mrked?domain=JPDM&arg=" + params[:arg] + "&pw=" + params[:pw]
+                Link.create(text: params[:arg],domain: "app.xn--pckax5a0p0a7dc.jp",password: params[:pw],target: params[:target])
+                redirect "/mrked?domain=app.xn--pckax5a0p0a7dc.jp&arg=" + params[:arg] + "&pw=" + params[:pw]
             else
                 Link.create(text: params[:arg],domain: params[:selectdomain],password: params[:pw],target: params[:target])
             end
@@ -39,11 +39,11 @@ get '/mrked' do
     domain = params[:domain]
     arg = params[:arg]
     pw = params[:pw]
-    if(domain.strip == "JPDM")
-        domain = "app.リンクタンシュク.jp"
-    end
     link = Link.find_by(text: arg,domain: domain)
     if( link != nil && link.password == pw)
+        if(domain.strip == "app.xn--pckax5a0p0a7dc.jp")
+            domain = "app.リンクタンシュク.jp"
+        end
         "Original: " + link.target + "<br>Short: http://" + domain + "/" + arg + "<br>Delete it? (click to delete!) -> <a href='/dlr?domain=" + domain + "&arg=" + arg + "&pw=" + pw + "'>DELETE_CONFIRM</a>"
     end
 end
@@ -53,6 +53,9 @@ get '/dlr' do
     domain = params[:domain]
     arg = params[:arg]
     pw = params[:pw]
+    if(domain.strip == "app.xn--pckax5a0p0a7dc.jp")
+        domain = "jp.リンクタンシュク.jp"
+    end
     link = Link.find_by(text: arg,domain: domain,password: pw)
     if( link != nil )
         link.destroy()
@@ -64,6 +67,9 @@ get '/data' do
     a = ""
     am = 0
     domains.each do |domain|
+        if(domain.strip == "app.リンクタンシュク.jp")
+            domain = "app.xn--pckax5a0p0a7dc.jp"
+        end
         perDomain = Link.where(domain: domain)
         a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
         am = am + perDomain.count
@@ -74,7 +80,6 @@ end
 
 get '/:any' do
     domain = request.host
-    p domain
     link = Link.find_by(domain: domain,text: params[:any])
     if( link != nil ) 
         redirect link.target
