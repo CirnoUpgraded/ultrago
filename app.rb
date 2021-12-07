@@ -69,10 +69,14 @@ get '/data' do
     domains.each do |domain|
         if(!domain.strip == "app.xn--pckax5a0p0a7dc.jp")
             if(domain.strip == "app.リンクタンシュク.jp")
-            domain = "app.xn--pckax5a0p0a7dc.jp"
-        end
+                domain = "app.xn--pckax5a0p0a7dc.jp"
+            end
             perDomain = Link.where(domain: domain)
-            a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
+            if(domain.strip == "app.xn--pckax5a0p0a7dc.jp")
+                a = a + "<br>app.リンクタンシュク.jp : " + perDomain.count.to_s
+            else
+                a = a + "<br>" + domain.to_s + " : " + perDomain.count.to_s
+            end
             am = am + perDomain.count
         end
     end
