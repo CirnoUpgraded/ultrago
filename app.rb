@@ -74,6 +74,7 @@ end
 
 get '/:any' do
     domain = request.host
+    p domain
     link = Link.find_by(domain: domain,text: params[:any])
     if( link != nil ) 
         redirect link.target
