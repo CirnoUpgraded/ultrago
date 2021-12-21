@@ -10,12 +10,16 @@ domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info",
     "you.brusy.work","app.brusy.xyz","app.brusy.work","app.move2link.co","app.move2.cc","app.let-move.me","app.theultrago.me"]
     
 bads = ["mkr","mrked","dlr","data"]
+langs = ["jp"]
 
 get '/' do
     @domains = domains
-    if(params[:lang] != nil and params[:lang].strip == "jp")
-        erb :index_JP
-    elsif(params[:lang] != nil)
+    if(params[:lang] != nil and langs.include?(params[:lang]))
+        lang = params[:lang].strip
+        if(lang == "jp")
+            erb :index_JP
+        end
+    elsif(params[:lang] != nil and !langs.include?(params[:lang]))
         redirect '/'
     else
         erb :index
