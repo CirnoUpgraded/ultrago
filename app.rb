@@ -14,6 +14,9 @@ langs = ["jp"]
 
 get '/' do
     @domains = domains
+    if(request.host == "app.xn--pckax5a0p0a7dc.jp")
+        redirect "?lang=jp"
+    end
     if(params[:lang] != nil and langs.include?(params[:lang]))
         lang = params[:lang].strip
         if(lang == "jp")
