@@ -15,7 +15,7 @@ get '/' do
     @domains = domains
     if(params[:lang] != nil and params[:lang].strip == "jp")
         erb :index_JP
-    else if(params[:lang] != nil)
+    elsif(params[:lang] != nil)
         redirect '/'
     else
         erb :index
