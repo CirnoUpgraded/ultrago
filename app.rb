@@ -13,7 +13,11 @@ bads = ["mkr","mrked","dlr","data"]
 
 get '/' do
     @domains = domains
-    erb :index
+    if(params[:lang] != nil and params[:lang].strip == "jp")
+        erb :index_JP
+    else
+        erb :index
+    end
 end
 
 
