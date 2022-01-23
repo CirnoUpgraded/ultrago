@@ -119,7 +119,7 @@ get '/:any' do
     domain = request.host
     link = Link.find_by(domain: domain,text: params[:any])
     if( link != nil )
-        Ip.create(ip: request.ip.to_s,domain: link.domain,arg: params[:any],browser: request.user_agent)
+        Ip.create(ip: request.ip.to_s,domain: link.domain,arg: params[:any],browser: request.user_agent.to_s)
         redirect link.target
     else
         redirect "http://app.ultra-go.info/"
