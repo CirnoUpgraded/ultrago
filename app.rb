@@ -106,7 +106,7 @@ get '/fusianasan' do
         shows = ""
         @threadList = Ip.where(domain: domain,arg: arg).order(id: "DESC")
         @threadList.each do |i|
-            ( i.created_at.to_s + " | " + i.ip ) + shows
+            shows += ( i.created_at.to_s + " | " + i.ip ) + "<br>"
         end
         shows + "<title>FUSIANASAN | " + domain + "/" + arg + "</title>"
     else
