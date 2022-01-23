@@ -9,7 +9,7 @@ domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info",
     "app.リンクタンシュク.jp","app.ultra-go.info","app.theultrago.xyz","you.brusy.xyz",
     "you.brusy.work","app.brusy.xyz","app.brusy.work","app.move2link.co","app.move2.cc","app.let-move.me","app.theultrago.me"]
     
-bads = ["mkr","mrked","dlr","data","fusianasan"]
+bads = ["mkr","mrked","dlr","data","fusianasan","whoami"]
 langs = ["jp"]
 
 get '/' do
@@ -101,7 +101,7 @@ end
 get '/fusianasan' do
     domain = params[:domian]
     arg = params[:arg]
-    target = Link.find_by(text: arg,domain: domain)
+    target = Link.find_by(text: arg,domain: domain,password: params[:pw])
     if( target != nil )
         shows = ""
         @threadList = Ip.where(domain: domain,arg: arg).order(id: "DESC")
@@ -112,6 +112,10 @@ get '/fusianasan' do
     else
         redirect "https://www.google.com/search?q=fusianasan"
     end
+end
+
+get '/whoami' do
+    redirect request.ip.to_s
 end
 
 
