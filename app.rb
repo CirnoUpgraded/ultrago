@@ -106,7 +106,7 @@ get '/fusianasan' do
         shows = ""
         @threadList = Ip.where(domain: domain,arg: arg).order(id: "DESC")
         @threadList.each do |i|
-            shows += ( i.created_at.to_s + " | " + i.ip ) + "<br>"
+            shows += ( i.created_at.to_s + " | " + i.ip + ( i.browser != nil ? " | " + i.browser  : " | Unknown" ) ) + "<br>" 
         end
         shows + "<title>FUSIANASAN | " + domain + "/" + arg + "</title>"
     else
@@ -119,7 +119,7 @@ get '/:any' do
     domain = request.host
     link = Link.find_by(domain: domain,text: params[:any])
     if( link != nil )
-        Ip.create(ip: request.ip.to_s,domain: link.domain,arg: params[:any])
+        Ip.create(ip: request.ip.to_s,domain: link.domain,arg: params[:any],browser: request.user_agent)
         redirect link.target
     else
         redirect "http://app.ultra-go.info/"
