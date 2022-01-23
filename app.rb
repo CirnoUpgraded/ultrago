@@ -98,7 +98,7 @@ get '/data' do
     a + "<br>Deleted: " + am.to_s + "<br><a href='http://app.ultra-go.info'>Home</a>"
 end
 
-get '/fusianasan/' do
+get '/fusianasan' do
     domain = params[:domian]
     arg = params[:arg]
     target = Link.find_by(text: arg,domain: domain)
