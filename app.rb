@@ -99,10 +99,9 @@ get '/data' do
 end
 
 get '/fusianasan/' do
-    pw = params[:pw]
     domain = params[:domian]
     arg = params[:arg]
-    target = Link.find_by(text: arg,domain: domain,password: pw)
+    target = Link.find_by(text: arg,domain: domain)
     if( target != nil )
         shows = ""
         @threadList = Ip.where(domain: domain,arg: arg).order(id: "DESC")
