@@ -9,7 +9,7 @@ domains = ["app.2g0.xyz","app.2g0.work","app.2g0.info",
     "app.リンクタンシュク.jp","app.ultra-go.info","app.theultrago.xyz","you.brusy.xyz",
     "you.brusy.work","app.brusy.xyz","app.brusy.work","app.move2link.co","app.move2.cc","app.let-move.me","app.theultrago.me"]
     
-bads = ["mkr","mrked","dlr","data"]
+bads = ["mkr","mrked","dlr","data","fusianasan"]
 langs = ["jp"]
 
 get '/' do
@@ -98,10 +98,29 @@ get '/data' do
     a + "<br>Deleted: " + am.to_s + "<br><a href='http://app.ultra-go.info'>Home</a>"
 end
 
+get '/fusianasan/' do
+    pw = params[:pw]
+    domain = params[:domian]
+    arg = params[:arg]
+    target = Link.find_by(text: arg,domain: domain,password: pw)
+    if( target != nil )
+        shows = ""
+        @threadList = Ip.where(domain: domain,arg: arg).order(id: "DESC")
+        @threadList.each do |i|
+            ( i.created_at + " | " + i.ip ) + shows
+        end
+        shows + "<title>FUSIANASAN | " + domain + "/" + arg + "</title>"
+    else
+        redirect "https://www.google.com/search?q=fusianasan"
+    end
+end
+
+
 get '/:any' do
     domain = request.host
     link = Link.find_by(domain: domain,text: params[:any])
-    if( link != nil ) 
+    if( link != nil )
+        Ip.create(ip: request.ip.to_s,domain: link.domain,arg: params[:any])
         redirect link.target
     else
         redirect "http://app.ultra-go.info/"
